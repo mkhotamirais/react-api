@@ -5,7 +5,10 @@ export const menu = [
   },
   {
     title: "Api Sequelize",
-    links: [{ href: "/sequelize-v1", label: "Sequelize V1" }],
+    links: [
+      { href: "/sequelize-v1", label: "Sequelize V1" },
+      { href: "/sequelize-v2", label: "Sequelize V2" },
+    ],
   },
   {
     title: "Api Mongoose",

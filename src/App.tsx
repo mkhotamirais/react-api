@@ -9,6 +9,7 @@ import Mdbv2Login from "./pages/mongodb/mdb-v2/auth/Mdbv2Login";
 import Mdbv2Register from "./pages/mongodb/mdb-v2/auth/Mdbv2Register";
 import Mys2v1 from "./pages/mysql2/Mys2v1";
 import Seqv1 from "./pages/sequelize/seq-v1/Seqv1";
+import Seqv2 from "./pages/sequelize/seq-v2/Seqv2";
 
 export default function App() {
   return (
@@ -22,12 +23,9 @@ export default function App() {
             <Route path="login" element={<Mdbv2Login />} />
             <Route path="register" element={<Mdbv2Register />} />
           </Route>
-          <Route path="/mysql2-v1">
-            <Route index element={<Mys2v1 />} />
-          </Route>
-          <Route path="/sequelize-v1">
-            <Route index element={<Seqv1 />} />
-          </Route>
+          <Route path="/mysql2-v1" element={<Mys2v1 />} />
+          <Route path="/sequelize-v1" element={<Seqv1 />} />
+          <Route path="/sequelize-v2" element={<Seqv2 />} />
           <Route path="/mysql" element={<Mys />} />
           <Route path="/postgresql" element={<Psg />} />
           <Route path="*" element={<div>not found</div>} />

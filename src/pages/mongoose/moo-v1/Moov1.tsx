@@ -28,9 +28,9 @@ export default function Moov1() {
       .post(`${url}/api-mongoose/v1/product`, formData)
       .then((res) => {
         toast.success(res.data.message);
+        getData();
         setFormData({ name: "", price: "" });
       })
-      .then(() => getData())
       .catch((err) => {
         if (err.response) {
           toast.error(err.response.data.error);

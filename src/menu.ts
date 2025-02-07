@@ -8,6 +8,7 @@ export const menu = [
     links: [
       { href: "/sequelize-v1", label: "Sequelize V1" },
       { href: "/sequelize-v2", label: "Sequelize V2" },
+      { href: "/sequelize-v3", label: "Sequelize V3" },
     ],
   },
   {

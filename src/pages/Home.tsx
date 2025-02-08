@@ -10,8 +10,8 @@ export default function Home() {
       <h1 className="title">ReactApi</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-2">
-        {menu.map((item) => (
-          <div className="border border-gray-300 rounded p-2">
+        {menu.map((item, i) => (
+          <div key={i} className="border border-gray-300 rounded p-2">
             <h2 className="title">{item.title}</h2>
             <div className="flex flex-col gap-1">
               {item.links.map((itm, idx) => (

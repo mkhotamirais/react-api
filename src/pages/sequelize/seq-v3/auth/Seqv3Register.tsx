@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Seqv3Layout from "../Seqv3Layout";
 import axios from "axios";
 import { url } from "../useSeqv3";
 import { toast } from "sonner";
@@ -29,67 +28,65 @@ export default function Seqv3Register() {
   };
 
   return (
-    <Seqv3Layout>
-      <div className="max-w-md">
-        <h2 className="title">Register</h2>
-        <form onSubmit={onRegister}>
-          {/* name */}
-          <div className="mb-3">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              className="input"
-              id="name"
-              placeholder="name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              disabled={pending}
-            />
-          </div>
-          {/* email */}
-          <div className="mb-3">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              className="input"
-              id="email"
-              placeholder="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              disabled={pending}
-            />
-          </div>
-          {/* password */}
-          <div className="mb-3">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="input"
-              id="password"
-              placeholder="******"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              disabled={pending}
-            />
-          </div>
-          {/* confPassword */}
-          <div className="mb-6">
-            <label htmlFor="confPassword">Confirm Password</label>
-            <input
-              type="password"
-              className="input"
-              id="confPassword"
-              placeholder="******"
-              value={formData.confPassword}
-              onChange={(e) => setFormData({ ...formData, confPassword: e.target.value })}
-              disabled={pending}
-            />
-          </div>
-          <button type="submit" disabled={pending} className="btn">
-            Register
-          </button>
-        </form>
-      </div>
-    </Seqv3Layout>
+    <div className="max-w-md">
+      <h2 className="title">Register</h2>
+      <form onSubmit={onRegister}>
+        {/* name */}
+        <div className="mb-3">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            className="input"
+            id="name"
+            placeholder="name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            disabled={pending}
+          />
+        </div>
+        {/* email */}
+        <div className="mb-3">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            className="input"
+            id="email"
+            placeholder="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            disabled={pending}
+          />
+        </div>
+        {/* password */}
+        <div className="mb-3">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            className="input"
+            id="password"
+            placeholder="******"
+            value={formData.password}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            disabled={pending}
+          />
+        </div>
+        {/* confPassword */}
+        <div className="mb-6">
+          <label htmlFor="confPassword">Confirm Password</label>
+          <input
+            type="password"
+            className="input"
+            id="confPassword"
+            placeholder="******"
+            value={formData.confPassword}
+            onChange={(e) => setFormData({ ...formData, confPassword: e.target.value })}
+            disabled={pending}
+          />
+        </div>
+        <button type="submit" disabled={pending} className="btn">
+          Register
+        </button>
+      </form>
+    </div>
   );
 }

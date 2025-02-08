@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Seqv3Layout from "./Seqv3Layout";
 import { useSeqv3 } from "./useSeqv3";
 
 export default function Seqv3() {
@@ -12,7 +11,7 @@ export default function Seqv3() {
   }, [getTags, getCategories]);
 
   return (
-    <Seqv3Layout>
+    <>
       {/* Filter and Sort */}
       <div>
         <input
@@ -35,6 +34,6 @@ export default function Seqv3() {
           <div key={i}>{item.name}</div>
         ))}
       </div>
-    </Seqv3Layout>
+    </>
   );
 }

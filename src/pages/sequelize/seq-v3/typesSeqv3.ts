@@ -27,24 +27,23 @@ export interface User {
   name: string;
   email: string;
   password: string;
-  refreshToken: string;
+  role: "user" | "editor" | "admin";
   createdAt: string;
   updatedAt: string;
 }
 
 export interface Seqv3State {
+  // Tags
   tags: Seqv3Tag[];
+  loadTags: boolean;
   getTags: () => void;
+  // Categories
   categories: Seqv3Category[];
+  loadCategories: boolean;
   getCategories: () => void;
+  // Me
   me: User | null;
+  loadMe: boolean;
+  errMe: string | null;
   getMe: () => void;
-  //   data: Seqv3Product[];
-  //   loadData: boolean;
-  //   errData: string | null;
-  //   getData: () => void;
-  // singleData: Seqv3Products | null;
-  // loadSingleData: boolean;
-  // errSingleData: string | null;
-  // getDataById: (id: string) => void;
 }

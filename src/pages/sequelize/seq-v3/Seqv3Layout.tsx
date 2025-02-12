@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import DynamicHead from "../../../components/DynamicHead";
 import Layout from "../../../components/Layout";
 import { Link, Outlet } from "react-router";

@@ -4,25 +4,25 @@ import axios from "axios";
 import { url, useSeqv3 } from "../useSeqv3";
 import { toast } from "sonner";
 
-interface Seqv3CategoriesEditProps {
+interface Seqv3TagsEditProps {
   item: Seqv3Tag;
   setEditId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export default function Seqv3CategoriesEdit({ item, setEditId }: Seqv3CategoriesEditProps) {
+export default function Seqv3TagsEdit({ item, setEditId }: Seqv3TagsEditProps) {
   const [name, setName] = useState(item.name);
   const [loadUpdate, setLoadUpdate] = useState(false);
-  const { getCategories } = useSeqv3();
+  const { getTags } = useSeqv3();
 
   const onUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoadUpdate(true);
     axios
       .create({ withCredentials: true })
-      .patch(`${url}/api-sequelize/v3/category/${item.id}`, { name })
+      .patch(`${url}/api-sequelize/v3/tag/${item.id}`, { name })
       .then((res) => {
         toast.success(res.data.message);
-        getCategories();
+        getTags();
       })
       .catch((err) => {
         toast.error(err.response.data.error || err.message);

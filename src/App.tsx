@@ -20,6 +20,9 @@ import Seqv3Layout from "./pages/sequelize/seq-v3/Seqv3Layout";
 import Seqv3Protected from "./pages/sequelize/seq-v3/Seqv3Protected";
 import Seqv3IsLogin from "./pages/sequelize/seq-v3/Seqv3IsLogin";
 import Seqv3Products from "./pages/sequelize/seq-v3/dashboard/Seqv3Products";
+import Seqv3ProtectedAdmin from "./pages/sequelize/seq-v3/Seqv3ProtectedAdmin";
+import Seqv3ProductsCreate from "./pages/sequelize/seq-v3/dashboard/Seqv3ProductsCreate";
+import Seqv3ProductsEdit from "./pages/sequelize/seq-v3/dashboard/Seqv3ProductsEdit";
 
 export default function App() {
   return (
@@ -39,12 +42,18 @@ export default function App() {
               <Route path="register" element={<Seqv3Register />} />
             </Route>
             <Route element={<Seqv3Protected />}>
-              <Route path="dashboard" element={<Seqv3Dashboard />} />
               <Route path="account" element={<Seqv3Account />} />
-              <Route path="users" element={<Seqv3Users />} />
-              <Route path="tags" element={<Seqv3Tags />} />
-              <Route path="categories" element={<Seqv3Categories />} />
-              <Route path="products" element={<Seqv3Products />} />
+              <Route element={<Seqv3ProtectedAdmin />}>
+                <Route path="dashboard" element={<Seqv3Dashboard />} />
+                <Route path="users" element={<Seqv3Users />} />
+                <Route path="tags" element={<Seqv3Tags />} />
+                <Route path="categories" element={<Seqv3Categories />} />
+                <Route path="products">
+                  <Route index element={<Seqv3Products />} />
+                  <Route path="create" element={<Seqv3ProductsCreate />} />
+                  <Route path="edit/:id" element={<Seqv3ProductsEdit />} />
+                </Route>
+              </Route>
             </Route>
           </Route>
           <Route path="/mysql" element={<Mys />} />

@@ -1,25 +1,27 @@
 export interface Seqv3Tag {
   id: string;
   name: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Seqv3Category {
   id: string;
   name: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Seqv3Product {
   id: string;
   name: string;
   price: string | number;
-  imageName: string;
-  imageUrl: string;
-  createdAt: string;
-  updatedAt: string;
+  tagIds: string[];
+  categoryId: string;
+  v3Category: Seqv3Category;
+  v3Tags: Seqv3Tag[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface User {
@@ -33,6 +35,11 @@ export interface User {
 }
 
 export interface Seqv3State {
+  // Me
+  me: User | null;
+  loadMe: boolean;
+  errMe: string | null;
+  getMe: () => void;
   // Tags
   tags: Seqv3Tag[];
   loadTags: boolean;
@@ -41,9 +48,8 @@ export interface Seqv3State {
   categories: Seqv3Category[];
   loadCategories: boolean;
   getCategories: () => void;
-  // Me
-  me: User | null;
-  loadMe: boolean;
-  errMe: string | null;
-  getMe: () => void;
+  // Products
+  products: Seqv3Product[];
+  loadProducts: boolean;
+  getProducts: (params?: string) => void;
 }

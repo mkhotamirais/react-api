@@ -10,15 +10,19 @@ button {
 }
 
 h1.title {
-  @apply text-2xl font-bold mb-2 capitalize;
+  @apply text-2xl font-bold capitalize;
 }
 
 h2.title {
-  @apply text-lg font-semibold mb-2 capitalize;
+  @apply text-lg font-semibold capitalize;
 }
 
 .card {
   @apply p-2 border border-gray-200 rounded-md;
+}
+
+.badge {
+  @apply py-[2px] px-[4px] bg-gray-800 text-white text-xs rounded-md;
 }
 
 .btn {

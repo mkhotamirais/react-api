@@ -6,6 +6,23 @@ const axiosCred = axios.create({ withCredentials: true });
 const url = import.meta.env.DEV ? import.meta.env.VITE_API_SEQ_DEV : import.meta.env.VITE_API_SEQ_PROD;
 
 const useSeqv3 = create<Seqv3State>((set) => ({
+  // Me
+  me: null,
+  loadMe: true,
+  errMe: null,
+  getMe: () => {
+    set({ loadMe: true });
+    axiosCred
+      .get(`${url}/api-sequelize/v3/me`)
+      .then((res) => {
+        set({ me: res.data?.user });
+      })
+      .catch(() => {
+        set({ me: null, errMe: "You are not logged in..." });
+        return null;
+      })
+      .finally(() => set({ loadMe: false }));
+  },
   // Tags
   tags: [],
   loadTags: false,
@@ -36,22 +53,20 @@ const useSeqv3 = create<Seqv3State>((set) => ({
       })
       .finally(() => set({ loadCategories: false }));
   },
-  // Me
-  me: null,
-  loadMe: true,
-  errMe: null,
-  getMe: () => {
-    set({ loadMe: true });
-    axiosCred
-      .get(`${url}/api-sequelize/v3/me`)
+  // Products
+  products: [],
+  loadProducts: false,
+  getProducts: (params = "") => {
+    set({ loadProducts: true });
+    axios
+      .get(`${url}/api-sequelize/v3/product?${params}`)
       .then((res) => {
-        set({ me: res.data?.user });
+        set({ products: res.data });
       })
-      .catch(() => {
-        set({ me: null, errMe: "You are not logged in..." });
-        return null;
+      .catch((err) => {
+        console.log(err);
       })
-      .finally(() => set({ loadMe: false }));
+      .finally(() => set({ loadProducts: false }));
   },
 }));
 

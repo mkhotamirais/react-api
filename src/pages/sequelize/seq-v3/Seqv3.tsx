@@ -1,38 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSeqv3 } from "./useSeqv3";
+import Seqv3ProductCard from "./Seqv3ProductCard";
+import { Seqv3ProductsFilterCategory, Seqv3ProductsSearch, Seqv3ProudctsFilterTags } from "./Seqv3ProductQuery";
+import { useSearchParams } from "react-router";
 
 export default function Seqv3() {
-  const { tags, getTags, categories, getCategories } = useSeqv3();
-  const [search, setSearch] = useState("");
+  const { products, getProducts, tags, getTags, categories, getCategories } = useSeqv3();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    getProducts(searchParams.toString());
     getTags();
     getCategories();
-  }, [getTags, getCategories]);
+  }, [getProducts, getTags, getCategories, searchParams]);
 
   return (
     <>
-      {/* Filter and Sort */}
       <div>
-        <input
-          type="search"
-          name="search"
-          id="search"
-          className="input"
-          placeholder="search product.."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <Seqv3ProductsSearch />
+        <Seqv3ProudctsFilterTags tags={tags} />
+        <Seqv3ProductsFilterCategory categories={categories} />
       </div>
+      {/* Products List */}
       <div>
-        {tags.map((item, i) => (
-          <div key={i}>{item.name}</div>
-        ))}
-      </div>
-      <div>
-        {categories.map((item, i) => (
-          <div key={i}>{item.name}</div>
-        ))}
+        <div>
+          <h2 className="title">Product List</h2>
+          {products.map((item, i) => (
+            <Seqv3ProductCard item={item} key={i} />
+          ))}
+        </div>
       </div>
     </>
   );

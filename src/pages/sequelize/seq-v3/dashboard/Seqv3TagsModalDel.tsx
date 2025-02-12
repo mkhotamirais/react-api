@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { Seqv3Tag } from "../typesSeqv3";
+import { Seqv3Category } from "../typesSeqv3";
 import { url, useSeqv3 } from "../useSeqv3";
 import { toast } from "sonner";
 import axios from "axios";
 import { FaXmark } from "react-icons/fa6";
 
 interface Seqv3ModalDelProps {
-  item: Seqv3Tag;
+  item: Seqv3Category;
   delId: string | null;
   setDelId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 export default function Seqv3TagsModalDel({ item, delId, setDelId }: Seqv3ModalDelProps) {
   const [loadDel, setLoadDel] = useState(false);
 
-  const { getTags } = useSeqv3();
+  const { getCategories } = useSeqv3();
   const onDelete = async () => {
     setLoadDel(true);
     axios
@@ -21,7 +21,7 @@ export default function Seqv3TagsModalDel({ item, delId, setDelId }: Seqv3ModalD
       .delete(`${url}/api-sequelize/v3/category/${item.id}`)
       .then((res) => {
         toast.success(res.data.message);
-        getTags();
+        getCategories();
       })
       .catch((err) => {
         toast.error(err.response.data.error || err.message);

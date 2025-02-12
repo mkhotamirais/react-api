@@ -27,6 +27,7 @@ export default function Seqv3Categories() {
       .post(`${url}/api-sequelize/v3/category`, { name })
       .then((res) => {
         toast.success(res.data.message);
+        setName("");
         getCategories();
       })
       .catch((err) => {
@@ -41,17 +42,25 @@ export default function Seqv3Categories() {
   else if (categories) {
     content = categories.map((category, i) => (
       <div key={i} className="border border-gray-300 p-2 rounded-md mb-1">
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between">
           <div className="capitalize">{category.name}</div>
-          <div className="flex gap-3">
-            <button type="button" title="update" onClick={() => setEditId(category.id)}>
-              <FaPenToSquare className="text-green-500" />
-            </button>
-            <button type="button" title="delete" onClick={() => setDelId(category.id)}>
-              <FaTrash className="text-red-500" />
-            </button>
-            <Seqv3CategoriesModalDel item={category} delId={delId} setDelId={setDelId} />
-          </div>
+          {editId === category.id ? (
+            <div className="flex gap-4">
+              <button type="button" title="delete" className="btn !bg-gray-400" onClick={() => setEditId(null)}>
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <div className="flex gap-3">
+              <button type="button" title="update" onClick={() => setEditId(category.id)}>
+                <FaPenToSquare className="text-green-500" />
+              </button>
+              <button type="button" title="delete" onClick={() => setDelId(category.id)}>
+                <FaTrash className="text-red-500" />
+              </button>
+              <Seqv3CategoriesModalDel item={category} delId={delId} setDelId={setDelId} />
+            </div>
+          )}
         </div>
         {editId === category.id && <Seqv3CategoriesEdit item={category} setEditId={setEditId} />}
       </div>

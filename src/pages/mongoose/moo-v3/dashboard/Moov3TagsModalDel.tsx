@@ -1,27 +1,27 @@
 import { useState } from "react";
-import { Seqv3Tag } from "../typesSeqv3";
-import { url, useSeqv3 } from "../useSeqv3";
+import { Moov3Category } from "../typesMoov3";
+import { url, useMoov3 } from "../useMoov3";
 import { toast } from "sonner";
 import axios from "axios";
 import { FaXmark } from "react-icons/fa6";
 
-interface Seqv3ModalDelProps {
-  item: Seqv3Tag;
+interface Moov3ModalDelProps {
+  item: Moov3Category;
   delId: string | null;
   setDelId: React.Dispatch<React.SetStateAction<string | null>>;
 }
-export default function Seqv3CategoriesModalDel({ item, delId, setDelId }: Seqv3ModalDelProps) {
+export default function Moov3TagsModalDel({ item, delId, setDelId }: Moov3ModalDelProps) {
   const [loadDel, setLoadDel] = useState(false);
 
-  const { getCategories } = useSeqv3();
+  const { getTags } = useMoov3();
   const onDelete = async () => {
     setLoadDel(true);
     axios
       .create({ withCredentials: true })
-      .delete(`${url}/api-sequelize/v3/category/${item.id}`)
+      .delete(`${url}/api-mongoose/v3/tag/${item._id}`)
       .then((res) => {
         toast.success(res.data.message);
-        getCategories();
+        getTags();
       })
       .catch((err) => {
         toast.error(err.response.data.error || err.message);
@@ -35,13 +35,13 @@ export default function Seqv3CategoriesModalDel({ item, delId, setDelId }: Seqv3
     <div
       onClick={() => setDelId(null)}
       className={`${
-        delId === item.id ? "opacity-100 visible" : "opacity-0 invisible"
+        delId === item._id ? "opacity-100 visible" : "opacity-0 invisible"
       } fixed inset-0 z-50 bg-white/50 transition-all`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className={`${
-          delId === item.id ? "translate-y-0" : "-translate-y-10"
+          delId === item._id ? "translate-y-0" : "-translate-y-10"
         } max-w-sm mx-auto mt-24 rounded-lg bg-white transition-all border border-gray-200 p-4`}
       >
         <button

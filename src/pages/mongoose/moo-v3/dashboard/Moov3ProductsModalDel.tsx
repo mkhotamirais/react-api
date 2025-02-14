@@ -1,28 +1,28 @@
 import { useState } from "react";
-import { Seqv3Tag } from "../typesSeqv3";
-import { url, useSeqv3 } from "../useSeqv3";
+import { Moov3Product } from "../typesMoov3";
+import { url, useMoov3 } from "../useMoov3";
 import { toast } from "sonner";
 import axios from "axios";
 import { FaXmark } from "react-icons/fa6";
 
-interface Seqv3ModalDelProps {
-  item: Seqv3Tag;
+interface Moov3ProductsModalDelProps {
+  item: Moov3Product;
   delId: string | null;
   setDelId: React.Dispatch<React.SetStateAction<string | null>>;
 }
-export default function Seqv3CategoriesModalDel({ item, delId, setDelId }: Seqv3ModalDelProps) {
+export default function Moov3ProductsModalDel({ item, delId, setDelId }: Moov3ProductsModalDelProps) {
   const [loadDel, setLoadDel] = useState(false);
 
-  const { getCategories } = useSeqv3();
+  const { getProducts } = useMoov3();
   const onDelete = async () => {
     setLoadDel(true);
     axios
       .create({ withCredentials: true })
-      .delete(`${url}/api-sequelize/v3/category/${item.id}`)
+      .delete(`${url}/api-mongoose/v3/product/${item.id}`)
       .then((res) => {
         toast.success(res.data.message);
-        getCategories();
       })
+      .then(() => getProducts())
       .catch((err) => {
         toast.error(err.response.data.error || err.message);
       })

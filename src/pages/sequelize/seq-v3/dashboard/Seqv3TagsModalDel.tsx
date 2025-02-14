@@ -13,15 +13,15 @@ interface Seqv3ModalDelProps {
 export default function Seqv3TagsModalDel({ item, delId, setDelId }: Seqv3ModalDelProps) {
   const [loadDel, setLoadDel] = useState(false);
 
-  const { getCategories } = useSeqv3();
+  const { getTags } = useSeqv3();
   const onDelete = async () => {
     setLoadDel(true);
     axios
       .create({ withCredentials: true })
-      .delete(`${url}/api-sequelize/v3/category/${item.id}`)
+      .delete(`${url}/api-sequelize/v3/tag/${item.id}`)
       .then((res) => {
         toast.success(res.data.message);
-        getCategories();
+        getTags();
       })
       .catch((err) => {
         toast.error(err.response.data.error || err.message);

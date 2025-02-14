@@ -14,8 +14,9 @@ export const menu = [
   {
     title: "Api Mongoose",
     links: [
-      { href: "mongoose-v1", label: "Mongoose V1" },
-      { href: "mongoose-v2", label: "Mongoose V2" },
+      { href: "/mongoose-v1", label: "Mongoose V1" },
+      { href: "/mongoose-v2", label: "Mongoose V2" },
+      { href: "/mongoose-v3", label: "Mongoose V3" },
     ],
   },
 ];

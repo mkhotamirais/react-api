@@ -23,6 +23,21 @@ import Seqv3Products from "./pages/sequelize/seq-v3/dashboard/Seqv3Products";
 import Seqv3ProtectedAdmin from "./pages/sequelize/seq-v3/Seqv3ProtectedAdmin";
 import Seqv3ProductsCreate from "./pages/sequelize/seq-v3/dashboard/Seqv3ProductsCreate";
 import Seqv3ProductsEdit from "./pages/sequelize/seq-v3/dashboard/Seqv3ProductsEdit";
+import Moov3Layout from "./pages/mongoose/moo-v3/Moov3Layout";
+import Moov3 from "./pages/mongoose/moo-v3/Moov3";
+import Moov3IsLogin from "./pages/mongoose/moo-v3/Moov3IsLogin";
+import Moov3Login from "./pages/mongoose/moo-v3/auth/Moov3Login";
+import Moov3Register from "./pages/mongoose/moo-v3/auth/Moov3Register";
+import Moov3Protected from "./pages/mongoose/moo-v3/Moov3Protected";
+import Moov3Account from "./pages/mongoose/moo-v3/public/Moov3Account";
+import Moov3ProtectedAdmin from "./pages/mongoose/moo-v3/Moov3ProtectedAdmin";
+import Moov3Dashboard from "./pages/mongoose/moo-v3/dashboard/Moov3Dashboard";
+import Moov3Categories from "./pages/mongoose/moo-v3/dashboard/Moov3Categories";
+import Moov3Tags from "./pages/mongoose/moo-v3/dashboard/Moov3Tags";
+import Moov3Users from "./pages/mongoose/moo-v3/dashboard/Moov3Users";
+import Moov3Products from "./pages/mongoose/moo-v3/dashboard/Moov3Products";
+import Moov3ProductsCreate from "./pages/mongoose/moo-v3/dashboard/Moov3ProductsCreate";
+import Moov3ProductsEdit from "./pages/mongoose/moo-v3/dashboard/Moov3ProductsEdit";
 
 export default function App() {
   return (
@@ -56,6 +71,28 @@ export default function App() {
               </Route>
             </Route>
           </Route>
+          <Route path="/mongoose-v3" element={<Moov3Layout />}>
+            <Route index element={<Moov3 />} />
+            <Route element={<Moov3IsLogin />}>
+              <Route path="login" element={<Moov3Login />} />
+              <Route path="register" element={<Moov3Register />} />
+            </Route>
+            <Route element={<Moov3Protected />}>
+              <Route path="account" element={<Moov3Account />} />
+              <Route element={<Moov3ProtectedAdmin />}>
+                <Route path="dashboard" element={<Moov3Dashboard />} />
+                <Route path="users" element={<Moov3Users />} />
+                <Route path="tags" element={<Moov3Tags />} />
+                <Route path="categories" element={<Moov3Categories />} />
+                <Route path="products">
+                  <Route index element={<Moov3Products />} />
+                  <Route path="create" element={<Moov3ProductsCreate />} />
+                  <Route path="edit/:id" element={<Moov3ProductsEdit />} />
+                </Route>
+              </Route>
+            </Route>
+          </Route>
+
           <Route path="/mysql" element={<Mys />} />
           <Route path="/postgresql" element={<Psg />} />
           <Route path="*" element={<div>not found</div>} />

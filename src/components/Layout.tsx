@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <footer className="h-16 border-t border-gray-200">
         <div className="container flex items-center justify-center">
           <p>
-            Build by <a href="https://mkhotami.vercel.app">Mkhotami</a>
+            Build by <a href="https://mkhotami.com">Mkhotami</a>
           </p>
         </div>
       </footer>
